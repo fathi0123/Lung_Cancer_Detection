@@ -1,0 +1,600 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="Canser_ProjectModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2008" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Customars">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="50" />
+          <Property Name="phone" Type="int" />
+          <Property Name="Address" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Degrees_Of_Deseess">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="testid" Type="int" />
+          <Property Name="SMOKING" Type="int" />
+          <Property Name="YELLOW_FINGERS" Type="int" />
+          <Property Name="ANXIETY" Type="int" />
+          <Property Name="PEER_PRESSURE" Type="int" />
+          <Property Name="CHRONIC_DISEASE" Type="int" />
+          <Property Name="FATIGUE" Type="int" />
+          <Property Name="ALLERGY" Type="int" />
+          <Property Name="WHEEZING" Type="int" />
+          <Property Name="ALCOHOL_CONSUMING" Type="int" />
+          <Property Name="COUGHING" Type="int" />
+          <Property Name="SHORTNESS_OF_BREATH" Type="int" />
+          <Property Name="SWALLOWING_DIFFICULTY" Type="int" />
+          <Property Name="CHEST_PAIN" Type="int" />
+          <Property Name="IS_Deleted" Type="bit" />
+          <Property Name="Total" Type="int" />
+        </EntityType>
+        <EntityType Name="Deseces">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="50" />
+          <Property Name="IS_Deleted" Type="bit" />
+          <Property Name="ImageLink" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Genders">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Persents">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" Nullable="false" />
+          <Property Name="persent" Type="int" />
+        </EntityType>
+        <EntityType Name="Results">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Userid" Type="int" Nullable="false" />
+          <Property Name="Testid" Type="int" />
+          <Property Name="Desecesid" Type="int" />
+          <Property Name="Testdate" Type="datetime" />
+          <Property Name="Result" Type="nvarchar" MaxLength="50" />
+          <Property Name="ResultDatetime" Type="datetime" />
+          <Property Name="ISWatinting" Type="bit" />
+          <Property Name="ISDone" Type="bit" />
+          <Property Name="Total_Degree" Type="int" />
+        </EntityType>
+        <EntityType Name="Test_Result">
+          <Key>
+            <PropertyRef Name="_id" />
+          </Key>
+          <Property Name="_id" Type="int" Nullable="false" />
+          <Property Name="userid" Type="int" />
+          <Property Name="username" Type="nvarchar" MaxLength="50" />
+          <Property Name="age" Type="int" />
+          <Property Name="gender" Type="int" />
+          <Property Name="testid" Type="int" />
+          <Property Name="SMOKING" Type="int" />
+          <Property Name="YELLOW_FINGERS" Type="int" />
+          <Property Name="ANXIETY" Type="int" />
+          <Property Name="PEER_PRESSURE" Type="int" />
+          <Property Name="CHRONIC_DISEASE" Type="int" />
+          <Property Name="FATIGUE" Type="int" />
+          <Property Name="ALLERGY" Type="int" />
+          <Property Name="WHEEZING" Type="int" />
+          <Property Name="ALCOHOL_CONSUMING" Type="int" />
+          <Property Name="COUGHING" Type="int" />
+          <Property Name="SHORTNESS_OF_BREATH" Type="int" />
+          <Property Name="SWALLOWING_DIFFICULTY" Type="int" />
+          <Property Name="CHEST_PAIN" Type="int" />
+          <Property Name="IS_Deleted" Type="bit" />
+          <Property Name="Datet" Type="datetime" />
+          <Property Name="Total_Degree" Type="int" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="name" Type="nvarchar" MaxLength="50" />
+          <Property Name="pho" Type="int" />
+          <Property Name="UserName" Type="nvarchar" MaxLength="50" />
+          <Property Name="Password" Type="nvarchar" MaxLength="50" />
+          <Property Name="ISDeleted" Type="bit" />
+          <Property Name="RoleId" Type="int" />
+          <Property Name="ImageLink" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <Association Name="FK_Degrees_Of_Deseess_Deseces">
+          <End Role="Deseces" Type="Self.Deseces" Multiplicity="1" />
+          <End Role="Degrees_Of_Deseess" Type="Self.Degrees_Of_Deseess" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Deseces">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Degrees_Of_Deseess">
+              <PropertyRef Name="id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Results_Deseces">
+          <End Role="Deseces" Type="Self.Deseces" Multiplicity="0..1" />
+          <End Role="Results" Type="Self.Results" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Deseces">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Results">
+              <PropertyRef Name="Desecesid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Results_Test_Result">
+          <End Role="Test_Result" Type="Self.Test_Result" Multiplicity="0..1" />
+          <End Role="Results" Type="Self.Results" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Test_Result">
+              <PropertyRef Name="_id" />
+            </Principal>
+            <Dependent Role="Results">
+              <PropertyRef Name="Testid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Results_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="Results" Type="Self.Results" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Results">
+              <PropertyRef Name="Userid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Test_Result_Genders">
+          <End Role="Genders" Type="Self.Genders" Multiplicity="0..1" />
+          <End Role="Test_Result" Type="Self.Test_Result" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Genders">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Test_Result">
+              <PropertyRef Name="gender" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Test_Result_Users">
+          <End Role="Users" Type="Self.Users" Multiplicity="0..1" />
+          <End Role="Test_Result" Type="Self.Test_Result" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Test_Result">
+              <PropertyRef Name="userid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Canser_ProjectModelStoreContainer">
+          <EntitySet Name="Customars" EntityType="Self.Customars" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Degrees_Of_Deseess" EntityType="Self.Degrees_Of_Deseess" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Deseces" EntityType="Self.Deseces" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Genders" EntityType="Self.Genders" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Persents" EntityType="Self.Persents" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Results" EntityType="Self.Results" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Test_Result" EntityType="Self.Test_Result" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_Degrees_Of_Deseess_Deseces" Association="Self.FK_Degrees_Of_Deseess_Deseces">
+            <End Role="Deseces" EntitySet="Deseces" />
+            <End Role="Degrees_Of_Deseess" EntitySet="Degrees_Of_Deseess" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Results_Deseces" Association="Self.FK_Results_Deseces">
+            <End Role="Deseces" EntitySet="Deseces" />
+            <End Role="Results" EntitySet="Results" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Results_Test_Result" Association="Self.FK_Results_Test_Result">
+            <End Role="Test_Result" EntitySet="Test_Result" />
+            <End Role="Results" EntitySet="Results" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Results_Users" Association="Self.FK_Results_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Results" EntitySet="Results" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Test_Result_Genders" Association="Self.FK_Test_Result_Genders">
+            <End Role="Genders" EntitySet="Genders" />
+            <End Role="Test_Result" EntitySet="Test_Result" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Test_Result_Users" Association="Self.FK_Test_Result_Users">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Test_Result" EntitySet="Test_Result" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Canser_ProjectModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="Canser_ProjectEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Customars" EntityType="Canser_ProjectModel.Customar" />
+          <EntitySet Name="Degrees_Of_Deseess" EntityType="Canser_ProjectModel.Degrees_Of_Deseess" />
+          <EntitySet Name="Deseces" EntityType="Canser_ProjectModel.Desece" />
+          <EntitySet Name="Genders" EntityType="Canser_ProjectModel.Gender" />
+          <EntitySet Name="Persents" EntityType="Canser_ProjectModel.Persent" />
+          <EntitySet Name="Test_Result" EntityType="Canser_ProjectModel.Test_Result" />
+          <EntitySet Name="Users" EntityType="Canser_ProjectModel.User" />
+          <AssociationSet Name="FK_Degrees_Of_Deseess_Deseces" Association="Canser_ProjectModel.FK_Degrees_Of_Deseess_Deseces">
+            <End Role="Desece" EntitySet="Deseces" />
+            <End Role="Degrees_Of_Deseess" EntitySet="Degrees_Of_Deseess" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Test_Result_Genders" Association="Canser_ProjectModel.FK_Test_Result_Genders">
+            <End Role="Gender" EntitySet="Genders" />
+            <End Role="Test_Result" EntitySet="Test_Result" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Test_Result_Users" Association="Canser_ProjectModel.FK_Test_Result_Users">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Test_Result" EntitySet="Test_Result" />
+          </AssociationSet>
+          <EntitySet Name="Results" EntityType="Canser_ProjectModel.Result" />
+          <AssociationSet Name="FK_Results_Deseces" Association="Canser_ProjectModel.FK_Results_Deseces">
+            <End Role="Desece" EntitySet="Deseces" />
+            <End Role="Result" EntitySet="Results" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Results_Users" Association="Canser_ProjectModel.FK_Results_Users">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Result" EntitySet="Results" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Results_Test_Result" Association="Canser_ProjectModel.FK_Results_Test_Result">
+            <End Role="Test_Result" EntitySet="Test_Result" />
+            <End Role="Result" EntitySet="Results" />
+          </AssociationSet>
+        </EntityContainer>
+        <EntityType Name="Customar">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="phone" Type="Int32" />
+          <Property Name="Address" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <EntityType Name="Degrees_Of_Deseess">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="testid" Type="Int32" />
+          <Property Name="SMOKING" Type="Int32" />
+          <Property Name="YELLOW_FINGERS" Type="Int32" />
+          <Property Name="ANXIETY" Type="Int32" />
+          <Property Name="PEER_PRESSURE" Type="Int32" />
+          <Property Name="CHRONIC_DISEASE" Type="Int32" />
+          <Property Name="FATIGUE" Type="Int32" />
+          <Property Name="ALLERGY" Type="Int32" />
+          <Property Name="WHEEZING" Type="Int32" />
+          <Property Name="ALCOHOL_CONSUMING" Type="Int32" />
+          <Property Name="COUGHING" Type="Int32" />
+          <Property Name="SHORTNESS_OF_BREATH" Type="Int32" />
+          <Property Name="SWALLOWING_DIFFICULTY" Type="Int32" />
+          <Property Name="CHEST_PAIN" Type="Int32" />
+          <Property Name="IS_Deleted" Type="Boolean" />
+          <NavigationProperty Name="Desece" Relationship="Canser_ProjectModel.FK_Degrees_Of_Deseess_Deseces" FromRole="Degrees_Of_Deseess" ToRole="Desece" />
+          <Property Name="Total" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Desece">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="IS_Deleted" Type="Boolean" />
+          <Property Name="ImageLink" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Degrees_Of_Deseess" Relationship="Canser_ProjectModel.FK_Degrees_Of_Deseess_Deseces" FromRole="Desece" ToRole="Degrees_Of_Deseess" />
+          <NavigationProperty Name="Results" Relationship="Canser_ProjectModel.FK_Results_Deseces" FromRole="Desece" ToRole="Result" />
+        </EntityType>
+        <EntityType Name="Gender">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Test_Result" Relationship="Canser_ProjectModel.FK_Test_Result_Genders" FromRole="Gender" ToRole="Test_Result" />
+        </EntityType>
+        <EntityType Name="Persent">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" />
+          <Property Name="persent1" Type="Int32" />
+        </EntityType>
+        <EntityType Name="Test_Result">
+          <Key>
+            <PropertyRef Name="C_id" />
+          </Key>
+          <Property Name="C_id" Type="Int32" Nullable="false" />
+          <Property Name="userid" Type="Int32" />
+          <Property Name="username" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="age" Type="Int32" />
+          <Property Name="gender" Type="Int32" />
+          <Property Name="testid" Type="Int32" />
+          <Property Name="SMOKING" Type="Int32" />
+          <Property Name="YELLOW_FINGERS" Type="Int32" />
+          <Property Name="ANXIETY" Type="Int32" />
+          <Property Name="PEER_PRESSURE" Type="Int32" />
+          <Property Name="CHRONIC_DISEASE" Type="Int32" />
+          <Property Name="FATIGUE" Type="Int32" />
+          <Property Name="ALLERGY" Type="Int32" />
+          <Property Name="WHEEZING" Type="Int32" />
+          <Property Name="ALCOHOL_CONSUMING" Type="Int32" />
+          <Property Name="COUGHING" Type="Int32" />
+          <Property Name="SHORTNESS_OF_BREATH" Type="Int32" />
+          <Property Name="SWALLOWING_DIFFICULTY" Type="Int32" />
+          <Property Name="CHEST_PAIN" Type="Int32" />
+          <Property Name="IS_Deleted" Type="Boolean" />
+          <Property Name="Datet" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Gender1" Relationship="Canser_ProjectModel.FK_Test_Result_Genders" FromRole="Test_Result" ToRole="Gender" />
+          <NavigationProperty Name="User" Relationship="Canser_ProjectModel.FK_Test_Result_Users" FromRole="Test_Result" ToRole="User" />
+          <Property Name="Total_Degree" Type="Int32" />
+          <NavigationProperty Name="Results" Relationship="Canser_ProjectModel.FK_Results_Test_Result" FromRole="Test_Result" ToRole="Result" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="name" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="pho" Type="Int32" />
+          <Property Name="UserName" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ISDeleted" Type="Boolean" />
+          <Property Name="RoleId" Type="Int32" />
+          <Property Name="ImageLink" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Test_Result" Relationship="Canser_ProjectModel.FK_Test_Result_Users" FromRole="User" ToRole="Test_Result" />
+          <NavigationProperty Name="Results" Relationship="Canser_ProjectModel.FK_Results_Users" FromRole="User" ToRole="Result" />
+        </EntityType>
+        <Association Name="FK_Degrees_Of_Deseess_Deseces">
+          <End Type="Canser_ProjectModel.Desece" Role="Desece" Multiplicity="1" />
+          <End Type="Canser_ProjectModel.Degrees_Of_Deseess" Role="Degrees_Of_Deseess" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Desece">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Degrees_Of_Deseess">
+              <PropertyRef Name="id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Test_Result_Genders">
+          <End Type="Canser_ProjectModel.Gender" Role="Gender" Multiplicity="0..1" />
+          <End Type="Canser_ProjectModel.Test_Result" Role="Test_Result" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Gender">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Test_Result">
+              <PropertyRef Name="gender" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Test_Result_Users">
+          <End Type="Canser_ProjectModel.User" Role="User" Multiplicity="0..1" />
+          <End Type="Canser_ProjectModel.Test_Result" Role="Test_Result" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Test_Result">
+              <PropertyRef Name="userid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Result">
+          <Key>
+            <PropertyRef Name="id" />
+          </Key>
+          <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Userid" Type="Int32" Nullable="false" />
+          <Property Name="Desecesid" Type="Int32" />
+          <Property Name="Testdate" Type="DateTime" Precision="3" />
+          <Property Name="Result1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="ResultDatetime" Type="DateTime" Precision="3" />
+          <Property Name="ISWatinting" Type="Boolean" />
+          <Property Name="ISDone" Type="Boolean" />
+          <Property Name="Total_Degree" Type="Int32" />
+          <NavigationProperty Name="Desece" Relationship="Canser_ProjectModel.FK_Results_Deseces" FromRole="Result" ToRole="Desece" />
+          <NavigationProperty Name="User" Relationship="Canser_ProjectModel.FK_Results_Users" FromRole="Result" ToRole="User" />
+          <Property Name="Testid" Type="Int32" />
+          <NavigationProperty Name="Test_Result" Relationship="Canser_ProjectModel.FK_Results_Test_Result" FromRole="Result" ToRole="Test_Result" />
+        </EntityType>
+        <Association Name="FK_Results_Deseces">
+          <End Type="Canser_ProjectModel.Desece" Role="Desece" Multiplicity="0..1" />
+          <End Type="Canser_ProjectModel.Result" Role="Result" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Desece">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Result">
+              <PropertyRef Name="Desecesid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Results_Users">
+          <End Type="Canser_ProjectModel.User" Role="User" Multiplicity="1" />
+          <End Type="Canser_ProjectModel.Result" Role="Result" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="id" />
+            </Principal>
+            <Dependent Role="Result">
+              <PropertyRef Name="Userid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Results_Test_Result">
+          <End Type="Canser_ProjectModel.Test_Result" Role="Test_Result" Multiplicity="0..1" />
+          <End Type="Canser_ProjectModel.Result" Role="Result" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Test_Result">
+              <PropertyRef Name="C_id" />
+            </Principal>
+            <Dependent Role="Result">
+              <PropertyRef Name="Testid" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Canser_ProjectModelStoreContainer" CdmEntityContainer="Canser_ProjectEntities">
+          <EntitySetMapping Name="Customars">
+            <EntityTypeMapping TypeName="Canser_ProjectModel.Customar">
+              <MappingFragment StoreEntitySet="Customars">
+                <ScalarProperty Name="Address" ColumnName="Address" />
+                <ScalarProperty Name="phone" ColumnName="phone" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Degrees_Of_Deseess">
+            <EntityTypeMapping TypeName="Canser_ProjectModel.Degrees_Of_Deseess">
+              <MappingFragment StoreEntitySet="Degrees_Of_Deseess">
+                <ScalarProperty Name="Total" ColumnName="Total" />
+                <ScalarProperty Name="IS_Deleted" ColumnName="IS_Deleted" />
+                <ScalarProperty Name="CHEST_PAIN" ColumnName="CHEST_PAIN" />
+                <ScalarProperty Name="SWALLOWING_DIFFICULTY" ColumnName="SWALLOWING_DIFFICULTY" />
+                <ScalarProperty Name="SHORTNESS_OF_BREATH" ColumnName="SHORTNESS_OF_BREATH" />
+                <ScalarProperty Name="COUGHING" ColumnName="COUGHING" />
+                <ScalarProperty Name="ALCOHOL_CONSUMING" ColumnName="ALCOHOL_CONSUMING" />
+                <ScalarProperty Name="WHEEZING" ColumnName="WHEEZING" />
+                <ScalarProperty Name="ALLERGY" ColumnName="ALLERGY" />
+                <ScalarProperty Name="FATIGUE" ColumnName="FATIGUE" />
+                <ScalarProperty Name="CHRONIC_DISEASE" ColumnName="CHRONIC_DISEASE" />
+                <ScalarProperty Name="PEER_PRESSURE" ColumnName="PEER_PRESSURE" />
+                <ScalarProperty Name="ANXIETY" ColumnName="ANXIETY" />
+                <ScalarProperty Name="YELLOW_FINGERS" ColumnName="YELLOW_FINGERS" />
+                <ScalarProperty Name="SMOKING" ColumnName="SMOKING" />
+                <ScalarProperty Name="testid" ColumnName="testid" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Deseces">
+            <EntityTypeMapping TypeName="Canser_ProjectModel.Desece">
+              <MappingFragment StoreEntitySet="Deseces">
+                <ScalarProperty Name="ImageLink" ColumnName="ImageLink" />
+                <ScalarProperty Name="IS_Deleted" ColumnName="IS_Deleted" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Genders">
+            <EntityTypeMapping TypeName="Canser_ProjectModel.Gender">
+              <MappingFragment StoreEntitySet="Genders">
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Persents">
+            <EntityTypeMapping TypeName="Canser_ProjectModel.Persent">
+              <MappingFragment StoreEntitySet="Persents">
+                <ScalarProperty Name="persent1" ColumnName="persent" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Test_Result">
+            <EntityTypeMapping TypeName="Canser_ProjectModel.Test_Result">
+              <MappingFragment StoreEntitySet="Test_Result">
+                <ScalarProperty Name="Total_Degree" ColumnName="Total_Degree" />
+                <ScalarProperty Name="Datet" ColumnName="Datet" />
+                <ScalarProperty Name="IS_Deleted" ColumnName="IS_Deleted" />
+                <ScalarProperty Name="CHEST_PAIN" ColumnName="CHEST_PAIN" />
+                <ScalarProperty Name="SWALLOWING_DIFFICULTY" ColumnName="SWALLOWING_DIFFICULTY" />
+                <ScalarProperty Name="SHORTNESS_OF_BREATH" ColumnName="SHORTNESS_OF_BREATH" />
+                <ScalarProperty Name="COUGHING" ColumnName="COUGHING" />
+                <ScalarProperty Name="ALCOHOL_CONSUMING" ColumnName="ALCOHOL_CONSUMING" />
+                <ScalarProperty Name="WHEEZING" ColumnName="WHEEZING" />
+                <ScalarProperty Name="ALLERGY" ColumnName="ALLERGY" />
+                <ScalarProperty Name="FATIGUE" ColumnName="FATIGUE" />
+                <ScalarProperty Name="CHRONIC_DISEASE" ColumnName="CHRONIC_DISEASE" />
+                <ScalarProperty Name="PEER_PRESSURE" ColumnName="PEER_PRESSURE" />
+                <ScalarProperty Name="ANXIETY" ColumnName="ANXIETY" />
+                <ScalarProperty Name="YELLOW_FINGERS" ColumnName="YELLOW_FINGERS" />
+                <ScalarProperty Name="SMOKING" ColumnName="SMOKING" />
+                <ScalarProperty Name="testid" ColumnName="testid" />
+                <ScalarProperty Name="gender" ColumnName="gender" />
+                <ScalarProperty Name="age" ColumnName="age" />
+                <ScalarProperty Name="username" ColumnName="username" />
+                <ScalarProperty Name="userid" ColumnName="userid" />
+                <ScalarProperty Name="C_id" ColumnName="_id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="Canser_ProjectModel.User">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="ImageLink" ColumnName="ImageLink" />
+                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+                <ScalarProperty Name="ISDeleted" ColumnName="ISDeleted" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="UserName" ColumnName="UserName" />
+                <ScalarProperty Name="pho" ColumnName="pho" />
+                <ScalarProperty Name="name" ColumnName="name" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Results">
+            <EntityTypeMapping TypeName="Canser_ProjectModel.Result">
+              <MappingFragment StoreEntitySet="Results">
+                <ScalarProperty Name="Testid" ColumnName="Testid" />
+                <ScalarProperty Name="Total_Degree" ColumnName="Total_Degree" />
+                <ScalarProperty Name="ISDone" ColumnName="ISDone" />
+                <ScalarProperty Name="ISWatinting" ColumnName="ISWatinting" />
+                <ScalarProperty Name="ResultDatetime" ColumnName="ResultDatetime" />
+                <ScalarProperty Name="Result1" ColumnName="Result" />
+                <ScalarProperty Name="Testdate" ColumnName="Testdate" />
+                <ScalarProperty Name="Desecesid" ColumnName="Desecesid" />
+                <ScalarProperty Name="Userid" ColumnName="Userid" />
+                <ScalarProperty Name="id" ColumnName="id" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

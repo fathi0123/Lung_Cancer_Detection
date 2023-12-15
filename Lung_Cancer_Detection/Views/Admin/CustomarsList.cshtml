@@ -1,0 +1,73 @@
+﻿
+@{
+    ViewBag.Title = "الحالات المسجلة ";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+<div class="card-header">
+
+    <div class="row">
+        <h3 class="col"> بحث عن حالة مسجلة سابقاً </h3>
+        <div class=" form-group">
+            @using (Html.BeginForm("CustomarsListWhere", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+
+
+                <div class="mb-3">
+                    <label for="name" class="form-label">الإسم</label>
+                    <input type="text" class="form-control" id="name" name="name" placeholder="اسم " required>
+                 
+                </div>
+
+
+
+            }
+            <p class="col-auto">
+                <a href='/Admin/CustomarsListWhere' class='btn btn-soft-primary  waves-effect waves-light px-4'><i class="fas fa-search me-3"></i> بحث  </a>
+            </p>
+        </div>
+    </div>
+    <div class=" form-group">
+
+        <div class="row">
+
+            @foreach (var item in ViewBag.Customars)
+            {
+                <div class="col-lg-4">
+                    <div class="card-body">
+
+                        <div class="card">
+
+                            @if (item.ImageLink != null)
+                            {
+                                <img src="@item.ImageLink" class="card-img-top" alt="..." style="height:230px">
+
+                            }
+                            else
+                            {
+                                <img src="~/AdminAssets/images/noimage.jpg" class="card-img-top" alt="..." style="height:230px">
+
+                            }
+
+                            <div class="card-body">
+                                <h5 class="card-title"> اسم الحالة :       @item.name  </h5>
+                                <h5 class="card-title">   رقم التواصل :        @item.pho  </h5>
+                                <p class="card-text"></p>
+                                <div style="text-align:left">
+                                    <a href="/Edit/ClassEdit/@item.id" title='عرض التقرير الطبي ' class='btn btn-soft-success  waves-effect waves-light p-2'><i class="fas fa-reply-all"></i></a>  &nbsp; &nbsp;
+                                    <a href="/Edit/ClassEdit/@item.id" title='تعديل' class='btn btn-soft-success  waves-effect waves-light p-2'><i class="fas fa-edit"></i></a>  &nbsp; &nbsp;
+                                    <a href='/Delete/DeleteClass/@item.id' title='حذف' onclick="return deleteCheck(this);" class='btn btn-soft-danger   waves-effect waves-light p-2' onclick="return deleteCheck(this)"><i class="fas fa-trash"></i></a>
+                                </div>
+
+                            </div>
+                        </div>
+                        @*<a href="~/Views/Edit/ClassEdit.cshtml">~/Views/Edit/ClassEdit.cshtml</a>*@
+                    </div>
+                </div>
+            }
+
+        </div>
+
+    </div>
+
+
+    </div>

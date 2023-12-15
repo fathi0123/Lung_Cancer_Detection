@@ -1,0 +1,200 @@
+﻿
+@{
+    ViewBag.Title = "Loginpage";
+    Layout = null;
+    var lang = "ar-EG";
+    var userInfo = TempData["UserInfo"];
+}
+
+<html lang="en" style="direction :rtl">
+
+<head>
+    <meta charset="utf-8" />
+    <title>تسجيل الدخول  | Lung Cancer  </title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
+    <meta content="Themesbrand" name="author" />
+    <!-- App favicon -->
+    <link rel="shortcut icon" href="/AdminAssets/images/favicon.ico">
+    <link href="~/AdminAssets/libs/choices.js/public/AdminAssets/styles/choices.min.css" rel="stylesheet" type="text/css">
+
+    @*<link rel="stylesheet" href="~/AdminAssets/trumbowygEditor/ui/trumbowyg.min.css">
+        <link rel="stylesheet" href="~/AdminAssets/trumbowygEditor/plugins/mathml/ui/trumbowyg.mathml.min.css">
+        <link rel="stylesheet" href="~/AdminAssets/trumbowygEditor/plugins/specialchars/ui/trumbowyg.specialchars.min.css">*@
+
+    <style>
+        @@font-face {
+            font-family: 'thesansbold';
+            src: url('../../../../AdminAssets/fonts/thesans bold.otf') format('opentype');
+        }
+
+        html, body {
+            font-family: thesansbold !important
+        }
+
+        [dir=rtl] input {
+            text-align: start !important;
+        }
+
+        #sidebar-menu ul li ul.sub-menu li a {
+            font-size: 0.78rem !important;
+        }
+
+        #sidebar-menu ul li a i {
+            font-size: 1rem !important;
+            min-width: 1rem !important;
+        }
+    </style>
+    <link href="~/AdminAssets/libs/sweetalert2/sweetalert2.min.css" rel="stylesheet" type="text/css">
+
+    <link href="~/AdminAssets/libs/datatables.net-bs4/css/dataTables.bootstrap4.min.css" rel="stylesheet" type="text/css">
+
+    <!-- preloader css -->
+    <link rel="stylesheet" href="~/AdminAssets/css/@(lang == "en" ? "preloader.min.css" : "preloader-rtl.min.css")" type="text/css" />
+
+    <!-- Bootstrap Css -->
+    <link href="~/AdminAssets/css/@(lang == "en" ? "bootstrap.min.css" : "bootstrap-rtl.min.css")" id="bootstrap-style" rel="stylesheet" type="text/css" />
+    <!-- Icons Css -->
+    <link href="~/AdminAssets/css/icons.min.css" rel="stylesheet" type="text/css" />
+    <!-- App Css-->
+    <link href="~/AdminAssets/css/@(lang == "en" ? "app.min.css" : "app-rtl.min.css")" id="app-style" rel="stylesheet" type="text/css" />
+
+
+</head>
+
+<body>
+
+    <!-- <body data-layout="horizontal"> -->
+    <div class="auth-page">
+        <div class="container-fluid p-0">
+            <div class="row g-0">
+                <div class="col-xxl-3 col-lg-4 col-md-5">
+                    <div class="auth-full-page-content d-flex p-sm-5 p-4">
+                        <div class="w-100">
+                            <div class="d-flex flex-column h-100">
+                                <div class="mb-4 mb-md-5 text-center">
+                                    <a href="index.html" class="d-block auth-logo">
+                                        <img src="/AdminAssets/images/Logo.png" alt="" height="120px"><br> <span class="logo-txt" style="font-size:40">   Lung Cancer      </span>
+                                    </a>
+                                </div>
+                                @using (Html.BeginForm("Loginpage", "Signin", FormMethod.Post, new { enctype = "multipart/form-data" }))
+                                {
+                                    <div class="auth-content my-auto">
+                                        <div class="text-center">
+                                            <h5 class="mb-0">
+                                                مرحبًا بعودتك !
+                                                !
+                                            </h5>
+                                            <p class="text-muted mt-2">قم بتسجيل الدخول لمتابعة حالتك الصحية .</p>
+                                        </div>
+                                        <form class="mt-4 pt-2" action="index.html">
+                                            <div class="mb-3">
+                                                <label class="form-label">إسم المستخدم</label>
+                                                <input type="text" class="form-control" id="UserName" name="UserName" placeholder="إسم المستخدم">
+                                            </div>
+                                            <div class="mb-3">
+                                                <div class="d-flex align-items-start">
+                                                    <div class="flex-grow-1">
+                                                        <label class="form-label ">كلمة المرور</label>
+                                                    </div>
+                                                    <div class="flex-shrink-0">
+                                                        <div class="">
+                                                        </div>
+                                                    </div>
+                                                </div>
+
+                                                <div class="input-group auth-pass-inputgroup">
+                                                    <input type="password" id="Password" name="Password" class="form-control" placeholder="كلمة المرور" aria-label="Password" aria-describedby="password-addon">
+                                                    <button class="btn btn-light shadow-none ms-0" type="button" id="password-addon"><i class="mdi mdi-eye-outline"></i></button>
+                                                </div>
+                                            </div>
+                                            <div class="row mb-4">
+
+                                            </div>
+                                            <div class="mb-3">
+                                                <button class="btn btn-primary w-100 waves-effect waves-light" type="submit"> تسجيل الدخول </button>
+                                            </div>
+                                        </form>
+                                        <div class="mt-5 text-center">
+                                            <p class="text-muted mb-0">
+                                                تملك حساب بالفعل ؟ <a href="~/Register/Index" class="text-primary fw-semibold"> تسجيل جديد  </a>
+                                            </p>
+                                        </div>
+                                    </div>
+                                }
+                                <div class="mt-4 mt-md-5 text-center">
+                                    <p class="mb-0">
+                                        ©
+                                        <script>document.write(new Date().getFullYear())</script> Elmorshidy   . Crafted with <i class="mdi mdi-heart text-danger"></i> by Themesbrand
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end auth full page content -->
+                </div>
+                <!-- end col -->
+                <div class="col-xxl-9 col-lg-8 col-md-7">
+                    <div class="auth-bg pt-md-5 p-4 d-flex">
+
+                        <!-- end bubble effect -->
+
+                    </div>
+                </div>
+                <!-- end col -->
+            </div>
+            <!-- end row -->
+        </div>
+        <!-- end container fluid -->
+    </div>
+
+
+    <!-- JAVASCRIPT -->
+    <script src="~/AdminAssets/libs/jquery/jquery.min.js"></script>
+    <script src="~/AdminAssets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="~/AdminAssets/libs/metismenu/metisMenu.min.js"></script>
+    <script src="~/AdminAssets/libs/simplebar/simplebar.min.js"></script>
+    <script src="~/AdminAssets/libs/node-waves/waves.min.js"></script>
+    <script src="~/AdminAssets/libs/feather-icons/feather.min.js"></script>
+    <!-- pace js -->
+    <script src="~/AdminAssets/libs/pace-js/pace.min.js"></script>
+    <script src="~/AdminAssets/libs/sweetalert2/sweetalert2.min.js"></script>
+    <script src="~/AdminAssets/js/app.js"></script>
+
+    <script src="~/AdminAssets/Custome/popupfunctions.js"></script>
+    <script src="~/AdminAssets/js/pages/fontawesome.init.js"></script>
+
+
+    @if (TempData["warning"] != null)
+    {
+        <script>
+
+        invokeAlert('@TempData["warning"]', '', 'warning', 2000);
+        </script>
+        TempData["warning"] = null;
+    }
+    @if (TempData["success"] != null)
+    {
+        <script>
+
+            invokeAlert('@TempData["success"]','', 'success', 2000);
+        </script>
+        TempData["success"] = null;
+    }
+    @if (TempData["danger"] != null)
+    {
+        <script>
+        invokeAlert('@TempData["danger"]', '', 'danger', 2000);
+        </script>
+        TempData["danger"] = null;
+    }
+    @if (TempData["info"] != null)
+    {
+        <script>
+        invokeAlert('@TempData["info"]', '', 'info', 2000);
+        </script>
+        TempData["info"] = null;
+    }
+</body>
+
+</html>

@@ -1,0 +1,82 @@
+﻿@{
+    ViewBag.Title = "إضافة مرض ";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<!-- start page title -->
+<div class="row">
+    <div class="col-12">
+        <div class="page-title-box d-sm-flex align-items-center justify-content-between">
+
+            <div class="page-title-right">
+                <ol class="breadcrumb m-0">
+
+                    <li class="breadcrumb-item">المرض</li>
+                </ol>
+            </div>
+
+        </div>
+    </div>
+</div>
+<!-- end page title -->
+
+
+
+
+@using (Html.BeginForm("insertDe", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <div class="card">
+        <div class="card-header">
+            <div class="row justify-content-b   etween">
+                <h4 class="col-auto">المرض </h4>
+            </div>
+        </div>
+        <input name="__RequestVerificationToken" type="hidden" value="aUeq7PVI3Q9f06f6nFDuAsVqB9euJeL5KKXZwCGpNY9upH9fMQF2ZGh2qJJMKswj0ADioc8VRh9IH284EC7MkoNo2SFZM1HJ4HjbSE6ejOk1" />
+        <div class="card-body">
+
+            <div class="row">
+
+
+
+
+       
+
+                <input id="ParentId" name="ParentId" type="hidden" value="" />
+
+
+                <div class="form-group  col-lg-10 col-sm-5">
+                    <label class="control-label " for="Title">إسم المرض  </label>
+                    <div class="col-12">
+                        <input class="form-control text-box single-line" data-val="true" data-val-required="الحقل عنوان الفصل مطلوب." id="name" name="name" type="text" value="" />
+                        <span class="field-validation-valid text-danger" data-valmsg-for="Title" data-valmsg-replace="true"></span>
+                    </div>
+                </div>
+
+                <div class="form-group  mb-3 col-sm-2">
+                    <label class="control-label " for="DisplayOrder">ترتيب العرض</label>
+                    <div class="col-12">
+                        <input class="form-control text-box single-line" data-val="true" data-val-number="The field ترتيب العرض must be a number." data-val-required="The ترتيب العرض field is required." id="DisplayOrder" name="DisplayOrder" type="number" value="0" />
+                        <span class="field-validation-valid text-danger" data-valmsg-for="DisplayOrder" data-valmsg-replace="true"></span>
+                    </div>
+                </div>
+
+                <div class="form-group  mb-3 col-12">
+                    <label class="control-label " for="Description">نبذة مختصرة عن المرض </label>
+                    <div class="col-12">
+                        <textarea class="form-control editor" cols="20" id="Description" name="Description" rows="2">
+</textarea>
+                        <span class="field-validation-valid text-danger" data-valmsg-for="Description" data-valmsg-replace="true"></span>
+                    </div>
+                </div>
+
+
+            </div>
+        </div>
+
+    </div>
+    <div class="card-footer">
+        <div class="row justify-content-end">
+            <button type='submit' class='btn btn-primary  waves-effect waves-light px-3 m-1 col-12 col-md-auto'><i class='fas fa-plus me-1'></i>اضافة</button>
+        </div>
+    </div>
+}

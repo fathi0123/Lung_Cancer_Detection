@@ -1,0 +1,100 @@
+﻿
+@{
+    ViewBag.Title = "تعريف نسب المرض ";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="mt-3 mt-lg-0">
+
+</div>
+@using (Html.BeginForm("insertPersents", "Admin", FormMethod.Post, new { enctype = "multipart/form-data" }))
+{
+    <div class="row">
+        <div class="col-lg-6">
+            <div>
+                <div class="mb-3">
+                    <div class="form-group mb-3 col-sm-12 col-lg-12">
+                        @Html.Label(" نوع الاختبار   ", htmlAttributes: new { @class = "control-label" })
+                        <div class="col-12">
+                            @Html.DropDownList("testid", new SelectList(ViewBag.dataDeseces, "id", "name"), "--اختر--", new { @class = "form-control text-center", @id = "CatigoryID" })
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mb-3">
+                    <label for="PEER_PRESSURE" class="form-label"> الضغط الفردي (PEER_PRESSURE) </label>
+                    <input class="form-control" type="text" value="" id="PEER_PRESSURE" name="PEER_PRESSURE">
+                </div>
+                <div class="mb-3">
+                    <label for="FATIGUE" class="form-label"> التعب  (FATIGUE) </label>
+                    <input class="form-control" type="text" value="" id="FATIGUE" name="FATIGUE">
+                </div>
+                <div class="mb-3">
+                    <label for="WHEEZING" class="form-label"> الصفير  (WHEEZING) </label>
+                    <input class="form-control" type="text" value="" id="WHEEZING" name="WHEEZING">
+                </div>
+                <div class="mb-3">
+                    <label for="COUGHING" class="form-label"> السعال   (COUGHING) </label>
+                    <input class="form-control" type="text" value="" id="COUGHING" name="COUGHING">
+                </div>
+                <div class="mb-3">
+                    <label for="SWALLOWING_DIFFICULTY" class="form-label">
+                        صعوبة البلع   (SWALLOWING DIFFICULTY)
+                    </label>
+                    <input class="form-control" type="text" value="" id="SWALLOWING_DIFFICULTY" name="SWALLOWING_DIFFICULTY">
+                </div>
+                <div class="mb-3">
+                    <label for="ALCOHOL_CONSUMING" class="form-label">
+                        استهلاك الكحول   (ALCOHOL CONSUMING)
+                    </label>
+                    <input class="form-control" type="text" value="" id="ALCOHOL_CONSUMING" name="ALCOHOL_CONSUMING">
+                </div>
+
+            </div>
+        </div>
+
+        <div class="col-lg-6">
+            <div class="mb-3">
+                <label for="YELLOW_FINGERS" class="form-label">الاصابع الصفراء (YELLOW_FINGERS) </label>
+                <input class="form-control" type="text" value="" id="YELLOW_FINGERS" name="YELLOW_FINGERS">
+            </div>
+            <div class="mb-3">
+                <label for="SMOKING" class="form-label">نسبة التدخين (SMOKING)  </label>
+                <input class="form-control" type="text" value="" id="SMOKING" name="SMOKING">
+            </div>
+            <div class="mb-3">
+                <label for="ANXIETY" class="form-label">قلق  (ANXIETY)  </label>
+                <input class="form-control" type="text" value="" id="ANXIETY" name="ANXIETY">
+            </div>
+            <div class="mb-3">
+                <label for="CHRONIC_DISEASE" class="form-label">مرض مزمن  (CHRONIC DISEASE)  </label>
+                <input class="form-control" type="text" value="" id="CHRONIC_DISEASE" name="CHRONIC_DISEASE">
+            </div>
+            <div class="mb-3">
+                <label for="ALLERGY" class="form-label">
+                    حساسية   (ALLERGY)
+                </label>
+                <input class="form-control" type="text" value="" id="ALLERGY" name="ALLERGY">
+            </div>
+
+            <div class="mb-3">
+                <label for="SHORTNESS_OF_BREATH" class="form-label">
+                    ضيق في التنفس   (SHORTNESS OF BREATH)
+                </label>
+                <input class="form-control" type="text" value="" id="SHORTNESS_OF_BREATH" name="SHORTNESS_OF_BREATH">
+            </div>
+
+            <div class="mb-3">
+                <label for="CHEST_PAIN" class="form-label">
+                    ألم صدر   (CHEST PAIN)
+                </label>
+                <input class="form-control" type="text" value="" id="CHEST_PAIN" name="CHEST_PAIN">
+            </div>
+        </div>
+    </div>
+    <div class="card-footer">
+        <div class="row justify-content-end">
+            <button type='submit' onclick="add(this)" class='btn btn-primary  waves-effect waves-light px-3 m-1 col-12 col-md-auto'><i class='fas fa-plus me-1'></i>اضافة</button>
+        </div>
+    </div>
+}

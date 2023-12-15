@@ -1,0 +1,57 @@
+﻿
+@{
+    ViewBag.Title = "النتائح";
+    Layout = "~/Views/Shared/UserAdminLayout.cshtml";
+}
+
+<div class="card-header">
+
+    <div class="row">
+        <h3 class="col"> الامراض  المسجلة سابقاً </h3>
+        <p class="col-auto">
+            <a href='/Admin/ADD_Desece' class='btn btn-soft-primary  waves-effect waves-light px-4'><i class="fas fa-plus me-3"></i> إنشاء جديد</a>
+        </p>
+    </div>
+</div>
+<div class="row">
+    @foreach (var item in ViewBag.Results)
+    
+    {
+        <div class="col-lg-4">
+            <div class="card-body">
+
+                <div class="card">
+
+
+                    <div class="card-body">
+                        @*<h5 class="card-title">   كود العميل  :  @item.uid  </h5>*@
+                        <br>
+
+
+
+
+
+                        <h5 class="card-title">   إسم  العميل  :  @item.name  </h5>
+                        <br>  <h5 class="card-title">   نوع الاختبار     :  @item.testType  </h5>
+                        @*<br> <h5 class="card-title">   تاريخ  الاختبار     :  @item.date  </h5>*@
+                        <br>
+
+
+                        <p class="card-text"></p>
+                        <div style="text-align:left">
+
+                            <a href="/Home/PationtResult/@item.Testid" title='عرض النتائج ' class='btn btn-soft-success  waves-effect waves-light p-2'><i class="fas fa-repeat"></i>عرض النتائج</a>
+
+
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+
+</div>
+
+

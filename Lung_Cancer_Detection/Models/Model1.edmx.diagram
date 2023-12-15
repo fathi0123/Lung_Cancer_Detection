@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="25ddd408a96c4358a157edd23ed17e35" Name="Diagram1" ZoomLevel="72">
+        <EntityTypeShape EntityType="Canser_ProjectModel.Customar" Width="1.5" PointX="5.75" PointY="6.75" />
+        <EntityTypeShape EntityType="Canser_ProjectModel.Degrees_Of_Deseess" Width="1.5" PointX="8" PointY="1" />
+        <EntityTypeShape EntityType="Canser_ProjectModel.Desece" Width="1.5" PointX="5.75" PointY="2.25" />
+        <EntityTypeShape EntityType="Canser_ProjectModel.Gender" Width="1.5" PointX="0.75" PointY="0.875" />
+        <EntityTypeShape EntityType="Canser_ProjectModel.Persent" Width="1.5" PointX="2.75" PointY="0.75" />
+        <EntityTypeShape EntityType="Canser_ProjectModel.Test_Result" Width="1.5" PointX="3" PointY="2.875" />
+        <EntityTypeShape EntityType="Canser_ProjectModel.User" Width="1.5" PointX="0.75" PointY="4.125" />
+        <AssociationConnector Association="Canser_ProjectModel.FK_Degrees_Of_Deseess_Deseces" />
+        <AssociationConnector Association="Canser_ProjectModel.FK_Test_Result_Genders" />
+        <AssociationConnector Association="Canser_ProjectModel.FK_Test_Result_Users" />
+        <EntityTypeShape EntityType="Canser_ProjectModel.Result" Width="1.5" PointX="11" PointY="3.125" />
+        <AssociationConnector Association="Canser_ProjectModel.FK_Results_Deseces" />
+        <AssociationConnector Association="Canser_ProjectModel.FK_Results_Users" />
+        <AssociationConnector Association="Canser_ProjectModel.FK_Results_Test_Result" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

@@ -1,0 +1,46 @@
+﻿
+@{
+    ViewBag.Title = "PationtResult";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+
+
+@foreach (var item in ViewBag.TestAswers)
+{
+
+
+    <div class="card-body">
+        <h5 class="card-title">@item.username  </h5>
+        <p class="card-text"></p>
+    
+    </div>
+
+    @*<h5 class="card-title">@item.username  </h5>
+    <h5>@item.age  </h5>
+    <h5>@item.SMOKING  </h5>*@
+    @*<h5 >@item.YELLOW_FINGERS  </h5>
+        <h5 >@item.ANXIETY  </h5>
+        <h5 >@item.PEER_PRESSURE  </h5>
+        <h5 >@item.CHRONIC_DISEASE  </h5>
+        <h5 >@item.FATIGUE  </h5>
+        <h5 >@item.ALLERGY  </h5>
+        <h5 >@item.WHEEZING  </h5>
+        <h5 >@item.ALCOHOL_CONSUMING  </h5>
+        <h5 >@item.COUGHING  </h5>
+        <h5 >@item.SHORTNESS_OF_BREATH  </h5>
+        <h5 >@item.SWALLOWING_DIFFICULTY  </h5>
+        <h5 >@item.CHEST_PAIN  </h5>
+        <h5 >@item.Total_Degree  </h5>*@
+    <p class="card-text"></p>
+    <div style="text-align:left">
+        <a href="/Edit/ClassEdit/@item.id" title='تعديل' class='btn btn-soft-success  waves-effect waves-light p-2'><i class="fas fa-edit"></i></a>  &nbsp; &nbsp;
+        <a href='/Delete/DeleteClass/@item.id' title='حذف' onclick="return deleteCheck(this);" class='btn btn-soft-danger   waves-effect waves-light p-2' onclick="return deleteCheck(this)"><i class="fas fa-trash"></i></a>
+    </div>
+
+    @*<a href="~/Views/Edit/ClassEdit.cshtml">~/Views/Edit/ClassEdit.cshtml</a>*@
+
+}
+
+
+

@@ -1,0 +1,35 @@
+﻿
+@{
+    ViewBag.Title = "DegreePersentlist";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="row">
+    @foreach (var item in ViewBag.dataDeseces)
+    {
+        <div class="col-lg-4">
+            <div class="card-body">
+
+                <div class="card">
+
+                   
+
+                    <div class="card-body">
+                        <h5 class="card-title">@item.name  </h5>
+                        <p class="card-text"></p>
+                        <div style="text-align:left">
+                            <a href="/Edit/ClassEdit/@item.id" title='تعديل' class='btn btn-soft-success  waves-effect waves-light p-2'><i class="fas fa-edit"></i></a>  &nbsp; &nbsp;
+                            <a href='/Delete/DeleteDegree/@item.id' title='حذف' onclick="return deleteCheck(this);" class='btn btn-soft-danger   waves-effect waves-light p-2' onclick="return deleteCheck(this)"><i class="fas fa-trash"></i></a>
+                        </div>
+
+                    </div>
+                </div>
+                @*<a href="~/Views/Edit/ClassEdit.cshtml">~/Views/Edit/ClassEdit.cshtml</a>*@
+            </div>
+        </div>
+    }
+
+</div>
+
+
+

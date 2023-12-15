@@ -1,0 +1,69 @@
+﻿
+@{
+    ViewBag.Title = "النتائح";
+    Layout = "~/Views/Shared/_AdminLayout.cshtml";
+}
+
+<div class="card-header">
+
+    <div class="row">
+        <h3 class="col"> الامراض  المسجلة سابقاً </h3>
+        <p class="col-auto">
+            <a href='/Admin/ADD_Desece' class='btn btn-soft-primary  waves-effect waves-light px-4'><i class="fas fa-plus me-3"></i> إنشاء جديد</a>
+        </p>
+    </div>
+</div>
+<div class="row">
+    @foreach (var item in ViewBag.Results)
+    {
+        <div class="col-lg-4">
+            <div class="card-body">
+
+                <div class="card">
+
+
+                    <div class="card-body">
+                        <h5 class="card-title">   كود العميل  :  @item.uid  </h5>
+                        <br>
+                        <h5 class="card-title">   إسم  العميل  :  @item.name  </h5>
+                        <br>  <h5 class="card-title">   نوع الاختبار     :  @item.testType  </h5>
+                        <br> <h5 class="card-title">   تاريخ  الاختبار     :  @item.date  </h5>
+                        @if (@item.Result == false)
+                        {
+                            <br> <h5 class="card-title">   حالة    الاختبار     :   </h5>
+                             <h5 class="card-title" style="color:red">   جاري المراجعة  </h5>
+
+                        }
+                        else
+                        {
+                            <br> <h5 class="card-title">   حالة    الاختبار     :   </h5>
+                             <h5 class="card-title" style="color:green">   تمت المراجعة   </h5>
+
+                        }
+                        <p class="card-text"></p>
+                        <div style="text-align:left">
+
+                            @if (@item.Result == false)
+                            {
+                                <a href="/Edit/ClassEdit/@item.uid" title='عرض الاختبار ' class='btn btn-soft-success  waves-effect waves-light p-2'><i class="fas fa-repeat"></i>عرض الأختبار </a>
+
+                            }  @if (@item.Result == true)
+                            {
+                                <a href="/Admin/PationtResult/@item.uid" title='عرض النتائج ' class='btn btn-soft-secondary  waves-effect waves-light p-2'><i class="fas fa-repeat"></i>عرض النتائج</a>
+                                <a href="/Admin/PationtResult/@item.uid" title='عرض الاختبار ' class='btn btn-soft-secondary  waves-effect waves-light p-2'><i class="fas fa-repeat"></i>عرض الأختبار </a>
+
+                            }
+                            <a href="/Edit/ClassEdit/@item._ID" title='تعديل' class='btn btn-soft-success  waves-effect waves-light p-2'><i class="fas fa-edit"></i></a>  &nbsp; &nbsp;
+                            <a href='/Delete/DeleteClass/@item._ID' title='حذف' onclick="return deleteCheck(this);" class='btn btn-soft-danger   waves-effect waves-light p-2' onclick="return deleteCheck(this)"><i class="fas fa-trash"></i></a>
+
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    }
+
+</div>
+
+

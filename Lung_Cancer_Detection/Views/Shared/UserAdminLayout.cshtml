@@ -1,0 +1,641 @@
+﻿@*is admin == true*@
+@{
+    var lang = "ar-EG";
+    var userInfo = TempData["UserInfo"];
+
+}
+<!doctype html>
+<html lang="en" @(lang != "en" ? "dir=rtl" : "")>
+
+<head>
+
+    <meta charset="utf-8" />
+    <title> لوحة التحكم | @ViewBag.Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="Premium Multipurpose Admin & Dashboard Template" name="description" />
+    <meta content="Themesbrand" name="author" />
+    <!-- App favicon -->
+    <link rel="shortcut icon" href="/AdminAssets/images/favicon.ico">
+    <link href="~/AdminAssets/libs/choices.js/public/assets/styles/choices.min.css" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="https://cdn.syncfusion.com/ej2/22.2.5/fluent.css" />
+
+    <style>
+        .page-title-content h2 {
+            text-shadow: 2px 2px #000000;
+        }
+
+        .cart-number {
+            background-color: red;
+            color: #ffffff;
+            line-height: 16.5px;
+            text-align: center;
+            border-radius: 3px;
+            font-weight: 500;
+            font-size: 16px;
+        }
+    </style>
+    <style>
+        @@font-face {
+            font-family: 'thesansbold';
+            src: url('../../../../AdminAssets/fonts/thesans bold.otf') format('opentype');
+        }
+
+        html, body {
+            font-family: thesansbold !important
+        }
+
+        [dir=rtl] input {
+            text-align: start !important;
+        }
+
+        #sidebar-menu ul li ul.sub-menu li a {
+            font-size: 0.78rem !important;
+        }
+
+        #sidebar-menu ul li a i {
+            font-size: 1rem !important;
+            min-width: 1rem !important;
+        }
+    </style>
+
+    <link href="~/AdminAssets/libs/sweetalert2/sweetalert2.min.css" rel="stylesheet" type="text/css">
+
+    <link href="~/AdminAssets/libs/datatables.net-bs4/css/dataTables.bootstrap4.min.css" rel="stylesheet" type="text/css">
+
+    <!-- preloader css -->
+    <link rel="stylesheet" href="~/AdminAssets/css/@(lang == "en" ? "preloader.min.css" : "preloader-rtl.min.css")" type="text/css" />
+
+    <!-- Bootstrap Css -->
+    <link href="~/AdminAssets/css/@(lang == "en" ? "bootstrap.min.css" : "bootstrap-rtl.min.css")" id="bootstrap-style" rel="stylesheet" type="text/css" />
+    <!-- Icons Css -->
+    <link href="~/AdminAssets/css/icons.min.css" rel="stylesheet" type="text/css" />
+    <!-- App Css-->
+    <link href="~/AdminAssets/css/@(lang == "en" ? "app.min.css" : "app-rtl.min.css")" id="app-style" rel="stylesheet" type="text/css" />
+
+    <script>
+        var loadFile = function (event) {
+            console.log(event.target.files.length);
+            for (var i = 0; i < event.target.files.length; i++) {
+
+                $("#output").append('<img id="output' + i + '" height="200" width="200" src=""  />')
+                var output = document.getElementById('output' + i);
+
+                output.src = URL.createObjectURL(event.target.files[i]);
+
+                output.onload = function () {
+                    $("#output").show();
+                    URL.revokeObjectURL(output.src) // free memory
+                }
+            }
+
+        };
+    </script>
+
+    @RenderSection("Styles", false)
+</head>
+
+<body style="margin-top:20px">
+
+    <!-- <body data-layout="horizontal"> -->
+    <!-- Begin page -->
+    <div id="layout-wrapper">
+        <header id="page-topbar">
+            <div class="navbar-header">
+                <div class="d-flex">
+                    <!-- LOGO -->
+                    <div class="navbar-brand-box">
+                        <a href="@Url.Action("Index","Admin")" class="logo logo-dark">
+                            <span class="logo-sm">
+                                <img src="~/AdminAssets/images/Logo.png" alt="" height="25" />
+                            </span>                                                     
+                            <span class="logo-lg">                                      
+                                <img src="~/AdminAssets/images/Logo.png" alt="" height="25" /> <span class="logo-txt"> Lung cancer  </span>
+                            </span>                                                     
+                        </a>                                                            
+                        <a href="@Url.Action("Index","Admin")" class="logo logo-light">
+                            <span class="logo-sm">                                     
+                            <img src="~/AdminAssets/images/Logo.png" alt="" height="25" />
+                            </span>                                                     
+                            <span class="logo-lg">                                      
+                                <img src="~/AdminAssets/images/Logo.png" alt="" height="25" /> <span class="logo-txt"> Lung cancer  </span>
+                            </span>
+                        </a>
+                    </div>
+
+                    <button type="button" class="btn btn-sm px-3 font-size-16 header-item" id="vertical-menu-btn">
+                        <i class="fa fa-fw fa-bars"></i>
+                    </button>
+
+                </div>
+                <div class="dropdown d-inline-block d-lg-none ms-2 col-6">
+                    <button type="button" class="btn header-item" id="page-header-search-dropdown"
+                            data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                        <i data-feather="search" class="fa fa-fw fa-search"></i>
+                    </button>
+                    <div class="dropdown-menu dropdown-menu-lg dropdown-menu-end p-0"
+                         aria-labelledby="page-header-search-dropdown">
+
+                        <form class="p-3">
+                            <div class="form-group m-0">
+                                <div class="input-group">
+                                    <input type="text" class="form-control" placeholder="Search ..." aria-label="Search">
+
+                                    <button class="btn btn-primary" type="submit"><i class="mdi mdi-magnify"></i></button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+                <div class="d-flex">
+
+                    <div class="dropdown d-none d-sm-inline-block">
+                        <button type="button" class="btn header-item" onclick="setdarkmode()" id="mode-setting-btn">
+                            <i class="fa fa-sun"></i>
+                            <i data-feather="sun" class="layout-mode-light"></i>
+                        </button>
+                    </div>
+
+                    <div class="dropdown d-inline-block">
+                        <button type="button" class="btn header-item bg-soft-light border-start border-end" id="page-header-user-dropdown"
+                                data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <img class="rounded-circle header-profile-user" alt="User Picture" src="/AdminAssets/images/users/avatar-1.jpg" onError="this.onerror=null;this.src='../../AdminAssets/images/sa camera.png';">
+                            <span class="d-none d-xl-inline-block ms-1 fw-medium">@ViewBag.User_NAme</span>
+                            <i class="mdi mdi-chevron-down d-none d-xl-inline-block"></i>
+                        </button>
+                        <div class="dropdown-menu dropdown-menu-end">
+                            <a class="dropdown-item" href="@Url.Action("Index","Home")"><i class="bx bx-home font-size-16 align-middle me-1"></i>الرئيسية</a>
+                            <a class="dropdown-item" href="@Url.Action( "SignOut", "Home")"><i class="bx bx-pen font-size-16 align-middle me-1"></i> الملف الشخصي   </a>
+
+                            <!-- item-->
+                            @*<a class="dropdown-item" href="@Url.Action("Index","Account",new { area = "" })"><i class="bx bx-user font-size-16 align-middle me-1"></i> Profile</a>*@
+
+                            <div class="dropdown-divider"></div>
+                            <a class="dropdown-item" href="@Url.Action( "SignOut", "Home")"><i class="bx bx-log-out font-size-16 align-middle me-1"></i> تسجيل الخروج </a>
+                            <div class="dropdown-divider"></div>
+                        </div>
+                    </div>
+
+
+                </div>
+            </div>
+        </header>
+
+        <!-- Loading side bar -->
+        <!-- ========== Left Sidebar Start ========== -->
+        <div class="vertical-menu">
+
+            <div data-simplebar class="h-100">
+
+                <!--- Sidemenu -->
+                <div id="sidebar-menu">
+                    <!-- Left Menu Start -->
+                    <ul class="metismenu list-unstyled" id="side-menu">
+
+
+                        <li>
+                            <i class="bi bi-envelope-paper-fill"></i>
+                            <a href="javascript: void(0);" class="has-arrow">
+                                <i class="bx bxs-dashboard"></i>
+                                <span data-key="t-apps"> تقديم اختبار      </span>
+                            </a>
+
+                            <ul class="sub-menu" aria-expanded="false">
+                                <li><a href="@Url.Action("Supmit_A_Test", "Home")"><i class="fa fa-layer-group p-1"></i>تقديم الأن      </a></li>
+                            </ul>
+                            <!--<ul class="sub-menu" aria-expanded="false">-->
+                            <!--<li><a href="@Url.Action("Index","GroupCatigor")">-->
+                            <!--<i class="fa fa-italic p-1"></i>   تعريف الاعراض       </a></li>
+                            </ul>-->
+
+
+                        </li>
+                        <li>
+                            <a href="javascript: void(0);" class="has-arrow">
+                                <i data-feather="grid" class="bx bxs-share-alt"></i>
+                                <span data-key="t-apps">النتائج    </span>
+                            </a>
+                            @*<ul class="sub-menu" aria-expanded="false">
+                                    <li><a href="@Url.Action("SchoolClass","Admin")"><i class="fas fa-list-alt p-1"></i> المراجل الدراسية     </a></li>
+                                    <li><a href="@Url.Action("Categories","Admin")"><i class="fas fa-list-alt p-1"></i> التصنيفات    </a></li>
+
+                                </ul>
+                                <ul class="sub-menu" aria-expanded="false">
+                                    <li><a href="@Url.Action("Courses","Admin")"><i class="fas fa-list-alt p-1"></i> المقررات      </a></li>
+
+                                </ul>
+                                <ul class="sub-menu" aria-expanded="false">
+                                    <li><a href="@Url.Action("Units","Admin")"><i class="fas fa-list-alt p-1"></i> فصول المقرر      </a></li>
+
+                                </ul>
+                                <ul class="sub-menu" aria-expanded="false">
+                                    <li><a href="@Url.Action("Courses","Admin")"><i class="fas fa-list-alt p-1"></i> الدروس       </a></li>
+
+                                </ul>*@
+                            <ul class="sub-menu" aria-expanded="false">
+                                <li><a href="@Url.Action("TestSupmitListWhere","Home")"><i class="fas fa-list-alt p-1"></i>  عرض النتائج          </a></li>
+
+                            </ul>
+                            @*<ul class="sub-menu" aria-expanded="false">
+                                    <li><a href="@Url.Action("Index","sOsERVICES")"><i class="fas fa-list-alt p-1"></i>  تحويل من مخزن لمخزن     </a></li>
+
+                                </ul>*@
+                        </li>
+              
+
+                   
+                        <li>
+                            <a href="javascript: void(0);" class="has-arrow">
+                                <i data-feather="grid"></i>
+                                <span data-key="t-apps">صندوق البريد</span>
+                            </a>
+                            <ul class="sub-menu" aria-expanded="false">
+                                <li>
+                                    <a href="/Admin/Settings/Messaes">
+                                        <i class="bx bxs-message"></i>
+                                        <span data-key="t-dashboard">صندوق البريد</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </li>
+
+                        @*<li>
+                                <a href="javascript: void(0);" class="has-arrow">
+                                    <i data-feather="grid" class="bx bxs-printer"></i>
+                                    <span data-key="t-apps">الرسائل النصية   </span>
+                                </a>
+                                <ul class="sub-menu" aria-expanded="false">
+                                    <li><a href="@Url.Action("Index","ImportantCustomers")"><i class="fa fa-user-alt p-1"></i>رسائل  وتس اب  </a></li>
+                                </ul>
+                            </li>*@
+
+                        @*<li>
+                                        <a href="javascript: void(0);" class="has-arrow">
+                                            <i data-feather="grid"></i>
+                                            <span data-key="t-apps"> الاخبار </span>
+                                        </a>
+                                        <ul class="sub-menu" aria-expanded="false">
+                                            <li><a href="@Url.Action("Index","AdminNews")"><i class="fa fa-folder-open p-1"></i> ادارة الاخبار</a></li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <a href="javascript: void(0);" class="has-arrow">
+                                            <i data-feather="grid"></i>
+                                            <span data-key="t-apps"> طلبات عرض السعر </span>
+                                        </a>
+                                        <ul class="sub-menu" aria-expanded="false">
+                                            <li><a href="@Url.Action("Orders","Admin")"><i class="fa fa-folder-open p-1"></i> ادارة طلبات عرض السعر</a></li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <a href="javascript: void(0);" class="has-arrow">
+                                            <i data-feather="grid"></i>
+                                            <span data-key="t-apps">الاعدادات   </span>
+                                        </a>
+                                        <ul class="sub-menu" aria-expanded="false">
+                                            <li><a href="@Url.Action("Index","Settings")"><i class="fa fa-cogs p-1"></i> اعدادات البرنامج</a></li>
+                                            <li><a href="@Url.Action("Index","SocialMedia")"><i class="fa fa-globe p-1"></i>حسابات السوشيال ميديا</a></li>
+                                        </ul>
+                                    </li>
+                                    <li>
+                                        <a href="javascript: void(0);" class="has-arrow">
+                                            <i data-feather="grid"></i>
+                                            <span data-key="t-apps"> صندوق البريد    </span>
+                                        </a>
+                                        <ul class="sub-menu" aria-expanded="false">
+                                            <li><a href="@Url.Action("Messages","Admin")"><i class="fa fa-folder-open p-1"></i> صندوق البريد  </a></li>
+                                        </ul>
+                                    </li>
+                            </ul>*@
+                </div>
+                <!-- Sidebar -->
+            </div>
+        </div>
+        <!-- Left Sidebar End -->
+        <!-- ============================================================== -->
+        <!-- Start right Content here -->
+        <!-- ============================================================== -->
+        <div class="main-content">
+
+            <div class="page-content">
+                <div class="container-fluid">
+
+                    <!-- start page title -->
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="page-title-box d-sm-flex align-items-center justify-content-between">
+                                <h4 class="mb-sm-0 font-size-18">@ViewBag.Title </h4>
+
+                                <div class="page-title-right">
+                                    <ol class="breadcrumb m-0">
+                                        @if (ViewBag.MainPage != null)
+                                        {
+                                            <li class="breadcrumb-item">@ViewBag.MainPage</li>
+                                        }
+                                        <li class="breadcrumb-item active">@ViewBag.Title</li>
+
+
+                                    </ol>
+                                </div>
+
+                            </div>
+                        </div>
+                    </div>
+                    <!-- end page title -->
+
+                    @RenderBody()
+                </div> <!-- container-fluid -->
+            </div>
+            <!-- End Page-content -->
+
+
+            <footer class="footer">
+                <div class="container-fluid">
+                    <div class="row">
+                        <div class="col-sm-6">
+                            <script>document.write(new Date().getFullYear())</script> © Speed Address
+                        </div>
+                        <div class="col-sm-6">
+                            <div class="text-sm-end d-none d-sm-block">
+                                Designed & Developed by <a href="" class="text-decoration-underline">Fathi Mahmoud</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </footer>
+        </div>
+        <!-- end main content-->
+
+    </div>
+    <!-- END layout-wrapper -->
+    <!-- JAVASCRIPT -->
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.0/jquery-ui.js"></script>
+
+    <script src="~/AdminAssets/libs/jquery/jquery.min.js"></script>
+    <script src="~/AdminAssets/libs/bootstrap/js/bootstrap.bundle.min.js"></script>
+    <script src="~/AdminAssets/libs/metismenu/metisMenu.min.js"></script>
+    <script src="~/AdminAssets/libs/simplebar/simplebar.min.js"></script>
+    <script src="~/AdminAssets/libs/node-waves/waves.min.js"></script>
+    <script src="~/AdminAssets/libs/feather-icons/feather.min.js"></script>
+    <!-- pace js -->
+    <script src="~/AdminAssets/libs/pace-js/pace.min.js"></script>
+    <script src="~/AdminAssets/libs/sweetalert2/sweetalert2.min.js"></script>
+    <script src="~/AdminAssets/js/app.js"></script>
+    <script src="~/AdminAssets/libs/choices.js/public/assets/scripts/choices.min.js"></script>
+    <script>
+        var elements = document.getElementsByClassName("searchable");
+        for (var i = 0; i < elements.length; i++) {
+            const choices = new Choices(elements[i], { shouldSort: false });
+        }
+    </script>
+    <script src="~/AdminAssets/libs/datatables.net/js/jquery.dataTables.min.js"></script>
+    <script src="~/AdminAssets/libs/datatables.net-bs4/js/dataTables.bootstrap4.min.js"></script>
+    <!-- Responsive examples -->
+    <script src="~/AdminAssets/libs/datatables.net-responsive/js/dataTables.responsive.min.js"></script>
+    <script src="~/AdminAssets/libs/datatables.net-responsive-bs4/js/responsive.bootstrap4.min.js"></script>
+
+    <script src="~/AdminAssets/Custome/popupfunctions.js"></script>
+    <script src="~/AdminAssets/js/pages/fontawesome.init.js"></script>
+
+
+    <script src="~/AdminAssets/js/jstree.js"></script>
+
+    <script src="~/AdminAssets/js/jstree.min.js"></script>
+    <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/buttons/2.2.2/js/dataTables.buttons.min.js"></script>
+    <script type="text/javascript" language="javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jszip/3.1.3/jszip.min.js"></script>
+    <script type="text/javascript" language="javascript" src="https://cdnjs.cloudflare.com/ajax/libs/pdfmake/0.1.53/vfs_fonts.js"></script>
+    <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/buttons/2.2.2/js/buttons.html5.min.js"></script>
+    <script type="text/javascript" language="javascript" src="https://cdn.datatables.net/buttons/2.2.2/js/buttons.print.min.js"></script>
+    <script src="~/index.js" defer></script>
+
+
+    <script>
+        $('#datatable').DataTable({
+            "lengthChange": true,
+            "lengthMenu": [10, 25, 50, 75, 100],
+
+            language: {
+                search: "بحث:",
+                lengthMenu: "عرض _MENU_ عنصر لكل صفحة",
+
+                info: "العناصر من _START_ الي _END_ من اصل _TOTAL_ عنصر",
+                processing: "جارى التحميل",
+                zeroRecords: "لا يوجد سجلات لعرضها",
+                infoFiltered: "",
+                infoEmpty: 'لا يوجد سجلات متاحه',
+                paginate: {
+                    first: "الاول",
+                    last: "الاخير",
+                    next: 'التالي',
+                    previous: 'السابق'
+                }
+
+            }, order: [[0, 'desc']],
+            dom: 'Blfrtip',
+            buttons: [
+                {
+                    extend: 'copy',
+                    text: '<i class="fa fa-file p-1"></i>نسخ',
+                    className: 'btn btn-default'
+                },
+
+                {
+                    extend: 'excel',
+                    text: '<i class="fa fa-list-alt p-1"></i>نسخة اكسيل',
+                    className: 'btn btn-default',
+
+                },
+                {
+                    extend: 'print',
+                    text: '<i class="fa fa-print p-1"></i>طباعة',
+                    title: '@TempData["SettingTitle"]',
+                    className: 'btn btn-default',
+                    autoPrint: true,
+
+                    customize: function (win) {
+                        $(win.document.body).find('th').addClass('display').css('text-align', 'center');
+                        $(win.document.body).find('table').addClass('display').css('font-size', '16px');
+                        $(win.document.body).find('table').addClass('display').css('text-align', 'center');
+                        $(win.document.body).find('tr:nth-child(odd) td').each(function (index) {
+                            $(this).css('background-color', '#D0D0D0');
+                        });
+                        $(win.document.body).find('h1').css('text-align', 'center');
+                        $(win.document.body).css('direction', 'rtl');
+
+                    }
+                }
+            ]
+
+        });
+        //var datatable_length = document.getElementsByName("datatable_length").value;
+        //console.log(datatable_length);
+
+        $("#datatable_wrapper").addClass("row");
+
+        $("#datatable_length").addClass("col-lg-4 mt-2");
+        $("#datatable_filter").addClass("mt-2 col-lg-3");
+
+
+        //$("#datatable_paginate").clone().insertAfter($("#datatable_info"));
+
+
+    </script>
+
+
+    <script src="~/AdminAssets/Custome/popupfunctions.js"></script>
+    <script src="~/AdminAssets/js/pages/fontawesome.init.js"></script>
+
+    <script>
+
+        function setDefaultSort() {
+            var dataTables = document.getElementById("datatable");
+            for (var i = 0; i < (dataTables.length); i++) {
+                var columns = dataTables[i].getElementsByTagName("th");
+                for (var x = 0; x < (columns.length); x++) {
+                    if (jQuery(columns[x]).hasClass("dataTable-defaultSort")) {
+                        $.fn.dataTableExt.iApiIndex = i;
+                        oTable.fnSort([x, 'desc']);
+                    }
+                }
+            }
+            $.fn.dataTableExt.iApiIndex = 0;
+        }
+    </script>
+
+
+
+    <script>
+        function myFunction() {
+            // Declare variables
+            var input, filter, ul, ul2, li, li2, a, a2, i, j, count;
+            input = document.getElementById("mySearch");
+            filter = input.value.toUpperCase();
+
+            ul = document.getElementById("side-menu");
+            li = ul.getElementsByClassName("Stund");
+
+            // Loop through all list items, and hide those who don't match the search query
+            for (i = 0; i < li.length; i++) {
+                count = 0;
+                a = li[i].getElementsByTagName("a")[0];
+
+                ul2 = li[i].getElementsByTagName("ul")[0];
+
+                li2 = ul2.getElementsByClassName("Stund2");
+
+                if (a.innerHTML.toUpperCase().indexOf(filter) > -1) {
+
+                    li[i].style.display = "";
+                }
+                else {
+                    li[i].style.display = "none";
+
+                }
+
+                for (j = 0; j < li2.length; j++) {
+                    {
+                        a2 = li2[j].getElementsByTagName("a")[0];
+
+                        if (a2.innerHTML.toUpperCase().indexOf(filter) > -1) {
+
+                            li2[j].style.display = "";
+                            count += 1;
+                        }
+                        else {
+                            li2[j].style.display = "none";
+
+                        }
+                    }
+                    if (count > 0) {
+                        li[i].style.display = "";
+                        ul2.style.display = "block";
+                    }
+                }
+
+                if (input.value == "") {
+                    ul2.style.display = "";
+                }
+            }
+
+        }
+    </script>
+
+
+    <script>
+        function setCookie(name, value, days) {
+            var expires = "";
+            if (days) {
+                var date = new Date();
+                date.setTime(date.getTime() + (days * 24 * 60 * 60 * 1000));
+                expires = "; expires=" + date.toUTCString();
+            }
+            document.cookie = name + "=" + (value || "") + expires + "; path=/";
+        }
+        function getCookie(name) {
+            var nameEQ = name + "=";
+            var ca = document.cookie.split(';');
+            for (var i = 0; i < ca.length; i++) {
+                var c = ca[i];
+                while (c.charAt(0) == ' ') c = c.substring(1, c.length);
+                if (c.indexOf(nameEQ) == 0) return c.substring(nameEQ.length, c.length);
+            }
+            return null;
+        }
+        function eraseCookie(name) {
+            document.cookie = name + '=; Path=/; Expires=Thu, 01 Jan 1970 00:00:01 GMT;';
+        }
+        var darkmode = getCookie('darkmode');
+        if (darkmode == 'on') {
+            $('body').attr('data-layout-mode', 'dark');
+            $('body').attr('data-sidebar', 'dark');
+            $('body').attr('data-topbar', 'dark');
+
+        }
+        function setdarkmode() {
+
+            if (darkmode == 'on') {
+                setCookie('darkmode', 'off', 120);
+            }
+            else {
+                setCookie('darkmode', 'on', 120);
+            }
+        }
+    </script>
+
+
+
+    @if (TempData["warning"] != null)
+    {
+        <script>
+
+        invokeAlert('@TempData["warning"]', '', 'warning', 2000);
+        </script>
+        TempData["warning"] = null;
+    }
+    @if (TempData["success"] != null)
+    {
+        <script>
+
+            invokeAlert('@TempData["success"]','', 'success', 2000);
+        </script>
+        TempData["success"] = null;
+    }
+    @if (TempData["danger"] != null)
+    {
+        <script>
+        invokeAlert('@TempData["danger"]', '', 'danger', 2000);
+        </script>
+        TempData["danger"] = null;
+    }
+    @if (TempData["info"] != null)
+    {
+        <script>
+        invokeAlert('@TempData["info"]', '', 'info', 2000);
+        </script>
+        TempData["info"] = null;
+    }
+    @RenderSection("scripts", required: false)
+
+
+</body>
+</html>

@@ -11,7 +11,7 @@ namespace Lung_Cancer_Detection.Controllers
 {
     public class HomeController : Controller
     {
-        Canser_ProjectEntities db = new Canser_ProjectEntities();
+        Canser_ProjectEntities db = new Canser_ProjectEntities(); 
 
         public ActionResult Index()
         {

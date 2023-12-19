@@ -1,46 +1,162 @@
 ﻿
 @{
-    ViewBag.Title = "PationtResult";
+    ViewBag.Title = "النتائج ";
     Layout = "~/Views/Shared/_AdminLayout.cshtml";
 }
 
+@*@model Lung_Cancer_Detection.Models.Test_Result*@
 
 
-@foreach (var item in ViewBag.TestAswers)
-{
+
+<div class="card">
+
+    <div class="row">
+        @foreach (var item in ViewBag.Desece)
+        {
+            <br>
+            <div class="row">
+                <div class="col-lg-6">
+                    <div>
 
 
-    <div class="card-body">
-        <h5 class="card-title">@item.username  </h5>
-        <p class="card-text"></p>
-    
+                        <div class="mb-3">
+                            <label for="PEER_PRESSURE" class="form-label"> الضغط الفردي (PEER_PRESSURE) </label>
+                            <input class="form-control" type="text" value="@item.PEER_PRESSURE" id="PEER_PRESSURE" name="PEER_PRESSURE">
+                        </div>
+                        <div class="mb-3">
+                            <label for="FATIGUE" class="form-label"> التعب  (FATIGUE) </label>
+                            <input class="form-control" type="text" value="@item.FATIGUE" id="FATIGUE" name="FATIGUE">
+                        </div>
+                        <div class="mb-3">
+                            <label for="WHEEZING" class="form-label"> الصفير  (WHEEZING) </label>
+                            <input class="form-control" type="text" value="@item.WHEEZING" id="WHEEZING" name="WHEEZING">
+                        </div>
+                        <div class="mb-3">
+                            <label for="COUGHING" class="form-label"> السعال   (COUGHING) </label>
+                            <input class="form-control" type="text" value="@item.COUGHING" id="COUGHING" name="COUGHING">
+                        </div>
+                        <div class="mb-3">
+                            <label for="SWALLOWING_DIFFICULTY" class="form-label">
+                                صعوبة البلع   (SWALLOWING DIFFICULTY)
+                            </label>
+                            <input class="form-control" type="text" value="@item.SWALLOWING_DIFFICULTY" id="SWALLOWING_DIFFICULTY" name="SWALLOWING_DIFFICULTY">
+                        </div>
+                        <div class="mb-3">
+                            <label for="CHEST_PAIN" class="form-label">
+                                ألم صدر   (CHEST PAIN)
+                            </label>
+                            <input class="form-control" type="text" value="@item.CHEST_PAIN" id="CHEST_PAIN" name="CHEST_PAIN">
+                        </div>
+                        <div class="mb-3">
+                            <label for="SHORTNESS_OF_BREATH" class="form-label">
+                                ضيق في التنفس   (SHORTNESS OF BREATH)
+                            </label>
+                            <input class="form-control" type="text" value="@item.SWALLOWING_DIFFICULTY" id="SHORTNESS_OF_BREATH" name="SHORTNESS_OF_BREATH">
+                        </div>
+                        <div class="mb-3">
+                            <label for="SHORTNESS_OF_BREATH" class="form-label">
+                                الإجمالي    (Total Degree)
+                            </label>
+                            <input class="form-control" type="text" value="@item.Total_Degree" id="Total_Degree" name="Total_Degree">
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="col-lg-6">
+                    <div class="mb-3">
+                        <label for="YELLOW_FINGERS" class="form-label">الاصابع الصفراء (YELLOW_FINGERS) </label>
+                        <input class="form-control" type="text" value="@item.YELLOW_FINGERS" id="YELLOW_FINGERS" name="YELLOW_FINGERS">
+                    </div>
+                    <div class="mb-3">
+                        <label for="SMOKING" class="form-label">نسبة التدخين (SMOKING)  </label>
+                        <input class="form-control" type="text" value="@item.SMOKING" id="SMOKING" name="SMOKING">
+                    </div>
+                    <div class="mb-3">
+                        <label for="ANXIETY" class="form-label">قلق  (ANXIETY)  </label>
+                        <input class="form-control" type="text" value="@item.ANXIETY" id="ANXIETY" name="ANXIETY">
+                    </div>
+                    <div class="mb-3">
+                        <label for="CHRONIC_DISEASE" class="form-label">مرض مزمن  (CHRONIC DISEASE)  </label>
+                        <input class="form-control" type="text" value="@item.CHRONIC_DISEASE" id="CHRONIC_DISEASE" name="CHRONIC_DISEASE">
+                    </div>
+                    <div class="mb-3">
+                        <label for="ALLERGY" class="form-label">
+                            حساسية   (ALLERGY)
+                        </label>
+                        <input class="form-control" type="text" value="@item.ALLERGY" id="ALLERGY" name="ALLERGY">
+                    </div>
+                    <div class="mb-3">
+                        <label for="ALCOHOL_CONSUMING" class="form-label">
+                            استهلاك الكحول   (ALCOHOL CONSUMING)
+                        </label>
+                        <input class="form-control" type="text" value="@item.ALCOHOL_CONSUMING" id="ALCOHOL_CONSUMING" name="ALCOHOL_CONSUMING">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="SHORTNESS_OF_BREATH" class="form-label">
+                            ضيق في التنفس   (SHORTNESS OF BREATH)
+                        </label>
+                        <input class="form-control" type="text" value="@item.SWALLOWING_DIFFICULTY" id="SHORTNESS_OF_BREATH" name="SHORTNESS_OF_BREATH">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="SHORTNESS_OF_BREATH" class="form-label">
+                            نسبة الإصابه بالمرض
+                        </label>
+                        <input class="form-control" type="text" value="@item.Total_Degree" id="Total_Degree" name="Total_Degree">
+                    </div>
+
+
+                </div>
+            </div>
+            <div class="row" style="padding:50px">
+                <label for="PEER_PRESSURE" class="form-label">  نتيجة  الإصابة : </label>
+                @foreach (var item2 in ViewBag.Desece22)
+                {
+
+                    <h2 for="PEER_PRESSURE" id="res-body" class="form-label" style="color:red">  @item2.Result1  </h2>
+                }
+
+            </div>
+
+
+        }
+
     </div>
 
-    @*<h5 class="card-title">@item.username  </h5>
-    <h5>@item.age  </h5>
-    <h5>@item.SMOKING  </h5>*@
-    @*<h5 >@item.YELLOW_FINGERS  </h5>
-        <h5 >@item.ANXIETY  </h5>
-        <h5 >@item.PEER_PRESSURE  </h5>
-        <h5 >@item.CHRONIC_DISEASE  </h5>
-        <h5 >@item.FATIGUE  </h5>
-        <h5 >@item.ALLERGY  </h5>
-        <h5 >@item.WHEEZING  </h5>
-        <h5 >@item.ALCOHOL_CONSUMING  </h5>
-        <h5 >@item.COUGHING  </h5>
-        <h5 >@item.SHORTNESS_OF_BREATH  </h5>
-        <h5 >@item.SWALLOWING_DIFFICULTY  </h5>
-        <h5 >@item.CHEST_PAIN  </h5>
-        <h5 >@item.Total_Degree  </h5>*@
-    <p class="card-text"></p>
-    <div style="text-align:left">
-        <a href="/Edit/ClassEdit/@item.id" title='تعديل' class='btn btn-soft-success  waves-effect waves-light p-2'><i class="fas fa-edit"></i></a>  &nbsp; &nbsp;
-        <a href='/Delete/DeleteClass/@item.id' title='حذف' onclick="return deleteCheck(this);" class='btn btn-soft-danger   waves-effect waves-light p-2' onclick="return deleteCheck(this)"><i class="fas fa-trash"></i></a>
-    </div>
 
-    @*<a href="~/Views/Edit/ClassEdit.cshtml">~/Views/Edit/ClassEdit.cshtml</a>*@
 
+
+
+
+
+
+</div>
+
+
+
+@section scripts{
+
+    <script>
+        let res = document.getElementById("res-body").textContent.trim();
+        if (res == "مصاب") {
+            Swal.fire({
+                title: "نتيجة الاختبار :",
+                text: "يتوقع الإصابة بالمرض  \n يرجى زيارة اقرب مركز طبي لمراجعة التقرير ",
+                icon: "error"
+            });
+        }
+
+        else {
+
+            Swal.fire({
+                title: "نتيجة الاختبار :",
+                text: "غير مصاب ",
+                icon: "success"
+            });
+        }
+
+
+    </script>
 }
-
-
-

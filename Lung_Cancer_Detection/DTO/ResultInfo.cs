@@ -13,7 +13,7 @@ namespace Lung_Cancer_Detection.DTO
         public String name { get; set; }
         public String testType { get; set; }
         public DateTime date { get; set; }
-        public bool Result { get; set; }
+        public String Result { get; set; }
 
     }  public class TotalDe
     {

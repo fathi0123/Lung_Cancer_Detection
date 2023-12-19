@@ -1,7 +1,6 @@
-﻿@*@model Lung_Cancer_Detection.Models.Test_Result*@
-
+﻿
 @{
-    ViewBag.Title = "PationtResult";
+    ViewBag.Title = "نتائج المستخدم";
     Layout = "~/Views/Shared/UserAdminLayout.cshtml";
 }
 
@@ -70,7 +69,7 @@
                         </div>
                         <div class="mb-3">
                             <label for="SHORTNESS_OF_BREATH" class="form-label">
-                                الإجمالي    (Total Degree)
+                                نسبة الإصابه بالمرض
                             </label>
                             <input class="form-control" type="text" value="@item.Total_Degree" id="Total_Degree" name="Total_Degree">
                         </div>
@@ -115,52 +114,22 @@
                         <input class="form-control" type="text" value="@item.SWALLOWING_DIFFICULTY" id="SHORTNESS_OF_BREATH" name="SHORTNESS_OF_BREATH">
                     </div>
 
-                    <div class="mb-3">
-                        <label for="SHORTNESS_OF_BREATH" class="form-label">
-                            نسبة الإصابه بالمرض
-                        </label>
-                        <input class="form-control" type="text" value="@item.Total_Degree" id="Total_Degree" name="Total_Degree">
-                    </div>
+                   
 
 
                 </div>
             </div>
             <div class="row" style="padding:50px">
-                <label for="PEER_PRESSURE" class="form-label">  نتيجة  الإصابة : </label>
+                <label for="PEER_PRESSURE" class="form-label">  نتيجة  الإختبار  : </label>
                 @foreach (var item2 in ViewBag.Desece22)
                 {
 
-                <h2 for="PEER_PRESSURE" class="form-label" style="color:red">  @item2.Result1  </h2>
+                    <h2 for="PEER_PRESSURE" id="res-body" class="form-label" style="color:red">  @item2.Result1  </h2>
                 }
 
             </div>
 
-            <!--<div class="col-lg-4">
-        <div class="card-body">
 
-
-            <h5 class="card-title">@item.username  </h5>
-            <h5>@item.age  </h5>
-            <h5>@item.SMOKING  </h5>
-            <h5>@item.YELLOW_FINGERS  </h5>
-            <h5>@item.ANXIETY  </h5>
-            <h5>@item.PEER_PRESSURE  </h5>
-            <h5>@item.CHRONIC_DISEASE  </h5>
-            <h5>@item.FATIGUE  </h5>
-            <h5>@item.ALLERGY  </h5>
-            <h5>@item.WHEEZING  </h5>
-            <h5>@item.ALCOHOL_CONSUMING  </h5>
-            <h5>@item.COUGHING  </h5>
-            <h5>@item.SHORTNESS_OF_BREATH  </h5>
-            <h5>@item.SWALLOWING_DIFFICULTY  </h5>
-            <h5>@item.CHEST_PAIN  </h5>
-            <h5>@item.Total_Degree  </h5>
-            <p class="card-text"></p>-->
-
-
-            @*<a href="~/Views/Edit/ClassEdit.cshtml">~/Views/Edit/ClassEdit.cshtml</a>*@
-            <!--</div>
-        </div>-->
         }
 
     </div>
@@ -175,6 +144,28 @@
 </div>
 
 
+@section scripts{
+
+    <script>
+        let res = document.getElementById("res-body").textContent.trim();
+        if (res == "مصاب") {
+            Swal.fire({
+                title: "نتيجة الاختبار :",
+                text: "يتوقع الإصابة بالمرض  \n يرجى زيارة اقرب مركز طبي لمراجعة التقرير ",
+                icon: "error"
+            });
+        }
+
+        else {
+
+            Swal.fire({
+                title: "نتيجة الاختبار :",
+                text: "غير مصاب ",
+                icon: "success"
+            });
+        }
 
 
+    </script>
+}
 

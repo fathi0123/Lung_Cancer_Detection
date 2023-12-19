@@ -38,12 +38,11 @@ namespace Lung_Cancer_Detection.Controllers
 
                 auth.SaveToCookies(user);
                 var sd = auth.LoadDataFromCookies();
-                if (sd != null)
-                {
+                
                     var ee = auth.CookieValues.UserId;
                     var i = auth.CookieValues.UserName;
 
-                }
+                
                 string returnUrl = Request.QueryString["returnUrl"];
                 if (!string.IsNullOrWhiteSpace(returnUrl))
                     return Redirect(returnUrl);

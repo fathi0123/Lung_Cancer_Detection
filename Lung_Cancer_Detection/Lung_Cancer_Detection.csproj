@@ -2263,6 +2263,8 @@
     <Content Include="Views\Admin\TestSupmitList.cshtml" />
     <Content Include="Views\Admin\PationtResult.cshtml" />
     <Content Include="Views\Home\PationtResult.cshtml" />
+    <Content Include="Views\Home\Chat.cshtml" />
+    <Content Include="Views\Admin\Chat.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

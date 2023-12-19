@@ -67,7 +67,7 @@
           <Property Name="Userid" Type="int" Nullable="false" />
           <Property Name="Testid" Type="int" />
           <Property Name="Desecesid" Type="int" />
-          <Property Name="Testdate" Type="datetime" />
+          <Property Name="Testdate" Type="date" />
           <Property Name="Result" Type="nvarchar" MaxLength="50" />
           <Property Name="ResultDatetime" Type="datetime" />
           <Property Name="ISWatinting" Type="bit" />
@@ -404,7 +404,7 @@
           <Property Name="id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="Userid" Type="Int32" Nullable="false" />
           <Property Name="Desecesid" Type="Int32" />
-          <Property Name="Testdate" Type="DateTime" Precision="3" />
+          <Property Name="Testdate" Type="DateTime" Precision="0" />
           <Property Name="Result1" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
           <Property Name="ResultDatetime" Type="DateTime" Precision="3" />
           <Property Name="ISWatinting" Type="Boolean" />

@@ -143,7 +143,23 @@ namespace Lung_Cancer_Detection.Controllers
             db.Results.Add(result);
             db.Test_Result.Add(degrees_Of_Deseess);
             db.SaveChanges();
-            TempData["success"] = "تم حفظ البيانات  ";
+
+            if (ssss > Total_Deseces)
+            {
+                TempData["warning"] = " جاري مراجعة البيانات  ";
+
+            }
+            else if (ssss < Total_Deseces)
+            {
+                TempData["warning"] = " جاري مراجعة البيانات  ";
+
+            }
+            else if (ssss == Total_Deseces)
+            {
+                TempData["warning"] = " جاري مراجعة البيانات  ";
+
+            }
+
 
             return RedirectToAction("TestSupmitListWhere", uid);
         }
@@ -177,28 +193,17 @@ namespace Lung_Cancer_Detection.Controllers
 
 
             return View();
-            //var ds = db.Test_Result.ToList();
-            //    db.Test_Result.Where(x => x.userid == id).Select(x => new pationtTestinfo
-            //{
-            //  WHEEZING=(int) x.WHEEZING,
-            //  SWALLOWING_DIFFICULTY=(int)x.SWALLOWING_DIFFICULTY,
-            //  ALCOHOL_CONSUMING =(int)x.ALCOHOL_CONSUMING,
-            //  YELLOW_FINGERS =(int)x.YELLOW_FINGERS,
-            //  SHORTNESS_OF_BREATH =(int)x.SHORTNESS_OF_BREATH,
-            //  ALLERGY =(int)x.ALLERGY,
-            //  ANXIETY =(int)x.ANXIETY,
-            //  CHEST_PAIN =(int)x.CHEST_PAIN,
-            //  CHRONIC_DISEASE =(int)x.CHRONIC_DISEASE,
-            //  COUGHING        =(int)x.COUGHING,
-            //  FATIGUE =(int)x.FATIGUE,
-            //  PEER_PRESSURE =(int)x.PEER_PRESSURE
-
-            //});
-
-            //return View(ds);
+         
         }
 
         #region  نتائج اختبار 
+        public ActionResult Chat()
+        {
+        
+            return View();
+        }
+        #endregion
+         #region  نتائج اختبار 
         public ActionResult TestSupmitListWhere()
         {
             VTSAuth auth = new VTSAuth();
@@ -221,7 +226,7 @@ namespace Lung_Cancer_Detection.Controllers
                     name = x.User.name,
                     testType = x.Desece.name,
                     date = (DateTime)x.Testdate,
-                    Result = (bool)x.ISDone
+                    Result =x.Result1
                 });
             ;
             return View(ViewBag.Results);

@@ -28,31 +28,20 @@
                         <h5 class="card-title">   إسم  العميل  :  @item.name  </h5>
                         <br>  <h5 class="card-title">   نوع الاختبار     :  @item.testType  </h5>
                         <br> <h5 class="card-title">   تاريخ  الاختبار     :  @item.date  </h5>
-                        @if (@item.Result == false)
-                        {
-                            <br> <h5 class="card-title">   حالة    الاختبار     :   </h5>
-                             <h5 class="card-title" style="color:red">   جاري المراجعة  </h5>
 
-                        }
-                        else
-                        {
-                            <br> <h5 class="card-title">   حالة    الاختبار     :   </h5>
-                             <h5 class="card-title" style="color:green">   تمت المراجعة   </h5>
+                        <br> <h5 class="card-title">   حالة    الاختبار     :   </h5>
+                        <h5 class="card-title" style="color:green">   تمت المراجعة   </h5>
 
-                        }
+
                         <p class="card-text"></p>
                         <div style="text-align:left">
 
                             @if (@item.Result == false)
                             {
-                                <a href="/Edit/ClassEdit/@item.uid" title='عرض الاختبار ' class='btn btn-soft-success  waves-effect waves-light p-2'><i class="fas fa-repeat"></i>عرض الأختبار </a>
-
-                            }  @if (@item.Result == true)
-                            {
-                                <a href="/Admin/PationtResult/@item.uid" title='عرض النتائج ' class='btn btn-soft-secondary  waves-effect waves-light p-2'><i class="fas fa-repeat"></i>عرض النتائج</a>
-                                <a href="/Admin/PationtResult/@item.uid" title='عرض الاختبار ' class='btn btn-soft-secondary  waves-effect waves-light p-2'><i class="fas fa-repeat"></i>عرض الأختبار </a>
+                                <a href="/Admin/PationtResult/@item._ID" title='عرض الاختبار ' class='btn btn-soft-success  waves-effect waves-light p-2'><i class="fas fa-repeat"></i>عرض الأختبار </a>
 
                             }
+
                             <a href="/Edit/ClassEdit/@item._ID" title='تعديل' class='btn btn-soft-success  waves-effect waves-light p-2'><i class="fas fa-edit"></i></a>  &nbsp; &nbsp;
                             <a href='/Delete/DeleteClass/@item._ID' title='حذف' onclick="return deleteCheck(this);" class='btn btn-soft-danger   waves-effect waves-light p-2' onclick="return deleteCheck(this)"><i class="fas fa-trash"></i></a>
 

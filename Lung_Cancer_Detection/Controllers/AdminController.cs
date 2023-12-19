@@ -121,7 +121,7 @@ namespace Lung_Cancer_Detection.Controllers
                 Desece = DOD.Desece,
                 FATIGUE = DOD.FATIGUE,
                 PEER_PRESSURE = DOD.PEER_PRESSURE,
-                Total= Total_Deseces
+                Total = Total_Deseces
             };
             db.Degrees_Of_Deseess.Add(degrees_Of_Deseess);
             db.SaveChanges();
@@ -141,7 +141,11 @@ namespace Lung_Cancer_Detection.Controllers
         //}
 
         #endregion
+        public ActionResult Chat()
+        {
 
+            return View();
+        }
         String USERNAME;
         int useri;
 
@@ -166,19 +170,41 @@ namespace Lung_Cancer_Detection.Controllers
                     name = x.User.name,
                     testType = x.Desece.name,
                     date = (DateTime)x.Testdate,
-                    Result = (bool)x.ISDone
+                    Result =x.Result1
                 });
             ;
             var rr = ViewBag.Results;
             return View(ViewBag.Results);
         }
         #endregion
-        
+
         #region  محدد  نتائج اختبار 
-        public ActionResult PationtResult(int id )
+        public ActionResult PationtResult(int id)
         {
-            ViewBag.Desece = db.Test_Result.Where(x => x.C_id == id).ToList();
-            return View(ViewBag.Desece);
+            VTSAuth auth = new VTSAuth();
+            var sd = auth.LoadDataFromCookies();
+            if (sd != null)
+            {
+                var ee = auth.CookieValues.UserId;
+                var i = auth.CookieValues.UserName;
+                useri = ee;
+
+            }
+            var Resultsid = db.Results.Where(x => x.id == id)
+              .Sum(x => x.Testid);
+
+
+            ViewBag.Desece = db.Test_Result.Where(x => x.C_id == Resultsid).ToList();
+            //.Sum(x => x.Total_Degree);
+
+            ViewBag.Desece22 = db.Results.Where(x => x.Testid == Resultsid).ToList();
+
+
+
+
+
+
+            return View();
         }
         #endregion
 

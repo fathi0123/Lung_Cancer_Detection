@@ -36,11 +36,9 @@
                         <p class="card-text"></p>
                         <div style="text-align:left">
 
-                            @if (@item.Result == false)
-                            {
-                                <a href="/Admin/PationtResult/@item._ID" title='عرض الاختبار ' class='btn btn-soft-success  waves-effect waves-light p-2'><i class="fas fa-repeat"></i>عرض الأختبار </a>
+                             <a href="/Admin/PationtResult/@item._ID" title='عرض الاختبار ' class='btn btn-soft-success  waves-effect waves-light p-2'><i class="fas fa-repeat"></i>عرض الأختبار </a>
 
-                            }
+                            
 
                             <a href="/Edit/ClassEdit/@item._ID" title='تعديل' class='btn btn-soft-success  waves-effect waves-light p-2'><i class="fas fa-edit"></i></a>  &nbsp; &nbsp;
                             <a href='/Delete/DeleteClass/@item._ID' title='حذف' onclick="return deleteCheck(this);" class='btn btn-soft-danger   waves-effect waves-light p-2' onclick="return deleteCheck(this)"><i class="fas fa-trash"></i></a>

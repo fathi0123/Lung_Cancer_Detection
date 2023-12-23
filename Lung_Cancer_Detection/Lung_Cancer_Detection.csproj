@@ -2204,6 +2204,7 @@
     <Content Include="Scripts\jquery.validate.unobtrusive.js" />
     <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="UserAssets\images\0cbfbdfd-907b-45fc-b705-449ae80aa4cc.jpg" />
     <Content Include="UserAssets\css\bootstrap.css" />
     <Content Include="UserAssets\css\font-awesome.min.css" />
     <Content Include="UserAssets\css\responsive.css" />

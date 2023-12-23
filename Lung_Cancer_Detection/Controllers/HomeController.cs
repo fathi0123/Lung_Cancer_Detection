@@ -62,6 +62,7 @@ namespace Lung_Cancer_Detection.Controllers
                 useri = ee;
 
             }
+
             #region   Calc Menimum Result 
 
             int SMOKING = (int)tr.SMOKING;
@@ -203,7 +204,8 @@ namespace Lung_Cancer_Detection.Controllers
             return View();
         }
         #endregion
-         #region  نتائج اختبار 
+
+        #region  نتائج اختبار 
         public ActionResult TestSupmitListWhere()
         {
             VTSAuth auth = new VTSAuth();
